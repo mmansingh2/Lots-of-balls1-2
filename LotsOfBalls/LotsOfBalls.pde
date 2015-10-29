@@ -36,7 +36,7 @@ void draw() {
   //add velocity to position
   x += velX;
   y += velY;
-  
+
   a += velA;
   b += velB;
 
