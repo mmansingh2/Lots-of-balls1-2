@@ -1,0 +1,51 @@
+int count = 700; // set number of balls
+
+float [] x = new float[count]; //declare and initialize variables
+float [] y = new float[count];
+float [] velX = new float[count];
+float [] velY = new float[count];
+float [] diam = new float[count];
+
+
+void setup () {
+  background(0); // set background color to black
+  size (680,680); //set canvas size
+
+  
+  for(int i = 0; i < count; i += 1) { //initialize variable, the following happens when i = (always)
+    fill(random(255),random(255),random(255)); //set ellipse color
+    ellipse(x[i],y[i],diam[i],diam[i]); //set ellipse position
+    x[i] = random(width); //assign variables
+    y[i] = random(height);
+    velX[i] = random(-7,7);
+    velY[i] = random(-7,7);
+    diam[i] = random(8,70);
+    i++; // after value of 1 is added to integer i, i returns to original value (0)
+  }
+}
+
+void draw () {
+  background(0); // set background color
+  for(int i = 0; i < count; i += 1) { // the following happens when i = 0 (always)
+    fill(random(255),random(255),random(255)); //ellipse random colors
+    ellipse(x[i],y[i],diam[i],diam[i]); //set ellipse position
+    
+    x[i] += velX[i]; //set speed in x direction
+    y[i] += velY[i]; //set speed in y direction
+    
+    if (x[i] + diam[i]/2 >= width) { //set boundaries of ball
+      velX[i] = -(velX[i]); //when ball hits left edge, its x speed changes direction
+    } else if (x[i] - diam[i]/2 <= 0) {
+      velX[i] = abs(velX[i]);    
+    }
+
+    if (y[i] + diam[i]/2 >= height) {
+      velY[i] = -(velY[i]); //when ball hits bottom edge, y speed changes direction
+    } else if (y[i] - diam[i]/2 <= 0) {
+      velY[i] = abs(velY[i]);
+    }
+    i++; //i value always returns to zero
+  }
+  
+  
+}
